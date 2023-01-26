@@ -1,4 +1,4 @@
-package nl.vv32.rcon;
+package xin.vanilla.rcon;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.nio.channels.ByteChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class Rcon implements Closeable {
 
@@ -24,11 +26,19 @@ public class Rcon implements Closeable {
     }
 
     public static Rcon open(final SocketAddress remote) throws IOException {
-        return new RconBuilder().withChannel(SocketChannel.open(remote)).build();
+        return open(remote, StandardCharsets.UTF_8);
+    }
+
+    public static Rcon open(final SocketAddress remote, final Charset charset) throws IOException {
+        return new RconBuilder().withChannel(SocketChannel.open(remote)).withCharset(charset).build();
     }
 
     public static Rcon open(final String hostname, final int port) throws IOException {
-        return open(new InetSocketAddress(hostname, port));
+        return open(hostname, port, StandardCharsets.UTF_8);
+    }
+
+    public static Rcon open(final String hostname, final int port, final Charset charset) throws IOException {
+        return open(new InetSocketAddress(hostname, port), charset);
     }
 
     public static RconBuilder newBuilder() {

@@ -9,15 +9,14 @@ buildscript {
 
 plugins {
     id 'java'
-    id 'maven-publish'
-    id 'signing'
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-group 'nl.vv32.rcon'
-version '1.2.0'
+group 'xin.vanilla.rcon'
+version '1.2.1'
+def artifactId = 'rcon'
 
 repositories {
     mavenCentral()
@@ -43,59 +42,27 @@ java {
     withSourcesJar()
 }
 
-publishing {
-    publications {
-       mavenJava(MavenPublication) {
-           artifactId = 'rcon'
-           from components.java
-           versionMapping {
-               usage('java-api') {
-                   fromResolutionOf('runtimeClasspath')
-               }
-               usage('java-runtime') {
-                   fromResolutionResult()
-               }
-           }
-           pom {
-               name = "RCON"
-               description = "Java implementation of the RCON protocol"
-               url = "https://github.com/jobfeikens/rcon"
-               licenses {
-                   license {
-                       name = "GNU General Public License, Version 3.0"
-                       url = "https://www.gnu.org/licenses/gpl-3.0.txt"
-                   }
-               }
-               developers {
-                   developer {
-                       id = "jobfeikens"
-                       name = "Job Feikens"
-                       email = "job@vv32.nl"
-                   }
-               }
-               scm {
-                   connection = "scm:git:https://github.com/jobfeikens/rcon.git"
-                   developerConnection = "scm:git:git@github.com:jobfeikens/rcon.git"
-                   url = "https://github.com/jobfeikens/rcon"
-               }
-           }
-       }
-    }
+apply plugin: 'maven'
+uploadArchives {
     repositories {
-        maven {
-            credentials {
-                username = "jobfeikens"
-                password = ""
+        mavenDeployer {
+            repository(url: 'https://packages.aliyun.com/maven/repository/2324416-release-QHveyE/') {
+                authentication(
+                        userName: '...',
+                        password: '...'
+                )
             }
-            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            snapshotRepository(url: 'https://packages.aliyun.com/maven/repository/2324416-snapshot-FpVCIy/') {
+                authentication(
+                        userName: '...',
+                        password: '...'
+                )
+            }
+            pom.version = "$project.version"
+            pom.artifactId = "$artifactId"
+            pom.groupId = "$project.group"
         }
     }
-}
-
-signing {
-    sign publishing.publications.mavenJava
 }
 
 javadoc {

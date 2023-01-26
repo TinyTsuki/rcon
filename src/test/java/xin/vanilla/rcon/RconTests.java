@@ -1,6 +1,7 @@
-package nl.vv32.rcon;
+package xin.vanilla.rcon;
 
-import nl.vv32.rcon.util.RconServerSimulator;
+import xin.vanilla.rcon.util.RconServerSimulator;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.channels.SocketChannel;
 import java.nio.channels.UnresolvedAddressException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -23,7 +23,7 @@ public class RconTests {
 
     @Test
     void setup() throws IOException {
-        assertDoesNotThrow(new RconBuilder().withChannel(new RconServerSimulator())::build);
+        Assertions.assertDoesNotThrow(new RconBuilder().withChannel(new RconServerSimulator())::build);
     }
 
     @Test
@@ -148,7 +148,7 @@ public class RconTests {
     void testMaxPayloadSize() throws IOException {
         Rcon rcon = new RconBuilder().withChannel(new RconServerSimulator().setPassword("password")).build();
         rcon.authenticate("password");
-        assertDoesNotThrow(() -> rcon.sendCommand(new String(new char[1446])));
+        Assertions.assertDoesNotThrow(() -> rcon.sendCommand(new String(new char[1446])));
         assertThrows(IllegalArgumentException.class, () -> rcon.sendCommand(new String(new char[1447])));
     }
 

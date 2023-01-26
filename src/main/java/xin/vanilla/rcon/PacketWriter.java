@@ -1,4 +1,4 @@
-package nl.vv32.rcon;
+package xin.vanilla.rcon;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

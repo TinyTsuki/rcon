@@ -1,8 +1,8 @@
-package nl.vv32.rcon.util;
+package xin.vanilla.rcon.util;
 
-import nl.vv32.rcon.Packet;
-import nl.vv32.rcon.PacketCodec;
-import nl.vv32.rcon.PacketType;
+import xin.vanilla.rcon.Packet;
+import xin.vanilla.rcon.PacketCodec;
+import xin.vanilla.rcon.PacketType;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

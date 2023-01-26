@@ -1,4 +1,4 @@
-package nl.vv32.rcon;
+package xin.vanilla.rcon;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;

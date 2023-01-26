@@ -1,6 +1,7 @@
-package nl.vv32.rcon;
+package xin.vanilla.rcon;
 
-import nl.vv32.rcon.util.RconServerSimulator;
+import xin.vanilla.rcon.util.RconServerSimulator;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +13,7 @@ public class RconBuilderTests {
         final RconBuilder builder = new RconBuilder();
         assertThrows(NullPointerException.class, builder::build);
         builder.withChannel(new RconServerSimulator());
-        assertDoesNotThrow(builder::build);
+        Assertions.assertDoesNotThrow(builder::build);
     }
 
     @Test
@@ -22,6 +23,6 @@ public class RconBuilderTests {
                 .withReadBufferCapacity(100)
                 .withWriteBufferCapacity(100);
 
-        assertDoesNotThrow(builder::build);
+        Assertions.assertDoesNotThrow(builder::build);
     }
 }

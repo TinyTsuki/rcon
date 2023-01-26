@@ -1,4 +1,4 @@
-package nl.vv32.rcon;
+package xin.vanilla.rcon;
 
 import java.io.EOFException;
 import java.io.IOException;

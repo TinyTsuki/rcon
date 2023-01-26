@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'nl.vv32.rcon:rcon:1.2.0'
+    implementation 'xin.vanilla.rcon:rcon:1.2.1'
 }
 ```
 
@@ -35,9 +35,9 @@ Add to `pom.xml`:
 ```xml
 <dependencies>
     <dependency>
-        <groupId>nl.vv32.rcon</groupId>
+        <groupId>xin.vanilla.rcon</groupId>
         <artifactId>rcon</artifactId>
-        <version>1.2.0</version>
+        <version>1.2.1</version>
     </dependency>
 </dependencies>
 ```
